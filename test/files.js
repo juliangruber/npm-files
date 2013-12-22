@@ -9,7 +9,7 @@ test('files', function(t) {
     .on('file', function(file) {
       if (i == 0) {
         t.deepEqual(file.props, {
-          path: 'package/package.json',
+          path: 'package.json',
           mode: 420,
           uid: 501,
           gid: 20,
@@ -28,7 +28,7 @@ test('files', function(t) {
         });
       } else {
         t.deepEqual(file.props, {
-          path: 'package/index.js',
+          path: 'index.js',
           mode: 420,
           uid: 501,
           gid: 20,

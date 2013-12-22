@@ -51,6 +51,7 @@ function files(name, opts) {
       req.pipe(unzip).pipe(parse);
       
       parse.on('entry', function(entry) {
+        entry.props.path = entry.props.path.slice(8);
         ee.emit('file', entry);
       });
       
