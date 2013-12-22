@@ -3,6 +3,8 @@
 
 Get the published source files of a node module.
 
+[![build status](https://secure.travis-ci.org/juliangruber/npm-files.png)](http://travis-ci.org/juliangruber/npm-files)
+
 ## Example
 
 For each file in the [intersect](https://npmjs.org/package/intersect) module, print file meta info and its contents:
