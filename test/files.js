@@ -55,3 +55,17 @@ test('files', function(t) {
     .on('end', t.ok.bind(t, true))
     .on('error', t.fail.bind(t));  
 });
+
+test('destroy', function(t) {
+  t.plan(1);
+  var f = files('npm-files-test');
+  f.once('file', function() {
+    f.destroy();
+    f.on('data', function() {
+      t.fail();
+    });
+    setTimeout(function() {
+      t.ok(true);
+    }, 1000);
+  });
+});

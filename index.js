@@ -32,33 +32,37 @@ function files(name, opts) {
   var ee = new EventEmitter;
   var error = ee.emit.bind(ee, 'error');
 
-  request(url)
-    .on('error', error)
-    .pipe(concat(function(res) {
-      try {
-        var body = JSON.parse(res);
-      } catch (err) {
-        return error(err);
-      }
-      
-      var req = request(body.dist.tarball)
-        .on('error', error);
-      var parse = tar.Parse()
-        .on('error', error);
-      var unzip = zlib.createGunzip()
-        .on('error', error);
-      
-      req.pipe(unzip).pipe(parse);
-      
-      parse.on('entry', function(entry) {
-        entry.props.path = entry.props.path.slice(8);
-        ee.emit('file', entry);
-      });
-      
-      parse.on('end', function() {
-        ee.emit('end');
-      });
-    }));
+  var req = request(url);
+  req.on('error', error);
+  req.pipe(concat(function(res) {
+    try {
+      var body = JSON.parse(res);
+    } catch (err) {
+      return error(err);
+    }
+    
+    req = request(body.dist.tarball)
+      .on('error', error);
+    var parse = tar.Parse()
+      .on('error', error);
+    var unzip = zlib.createGunzip()
+      .on('error', error);
+    
+    req.pipe(unzip).pipe(parse);
+    
+    parse.on('entry', function(entry) {
+      entry.props.path = entry.props.path.slice(8);
+      ee.emit('file', entry);
+    });
+    
+    parse.on('end', function() {
+      ee.emit('end');
+    });
+  }));
+
+  ee.destroy = function() {
+    req.destroy();
+  };
   
   return ee;
 }

@@ -50,6 +50,10 @@ All is done.
 
 Oops, an error happened. You should listen for this otherwise you node will throw on error. Or use domains.
 
+### files#destroy()
+
+Abort whatever is currently happening.
+
 ## Installation
 
 ```bash
