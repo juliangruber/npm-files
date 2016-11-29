@@ -12,12 +12,12 @@
     "test": "tap test/*.js"
   },
   "dependencies": {
-    "tar": "~0.1.19",
-    "hyperquest": "~0.1.8",
-    "concat-stream": "~1.2.1"
+    "tar": "~2.2.1",
+    "hyperquest": "~2.1.2",
+    "concat-stream": "~1.5.2"
   },
   "devDependencies": {
-    "tap": "~0.4.6"
+    "tap": "~8.0.1"
   },
   "keywords": [
     "npm",
