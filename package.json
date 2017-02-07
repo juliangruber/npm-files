@@ -17,7 +17,7 @@
     "concat-stream": "~1.5.2"
   },
   "devDependencies": {
-    "tap": "~10.0.0"
+    "tap": "~10.1.0"
   },
   "keywords": [
     "npm",
