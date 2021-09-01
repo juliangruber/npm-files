@@ -43,21 +43,20 @@ function files(name, opts) {
     
     req = request(body.dist.tarball)
       .on('error', error);
-    var parse = tar.Parse()
-      .on('error', error);
     var unzip = zlib.createGunzip()
       .on('error', error);
     
-    req.pipe(unzip).pipe(parse);
-    
+    var parse = new tar.Parse();
+    parse.on('error', error);
     parse.on('entry', function(entry) {
-      entry.props.path = entry.props.path.slice(8);
+      entry.path = entry.path.slice(8);
       ee.emit('file', entry);
     });
-    
     parse.on('end', function() {
       ee.emit('end');
     });
+
+    req.pipe(unzip).pipe(parse);
   }));
 
   ee.destroy = function() {

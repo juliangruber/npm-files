@@ -12,9 +12,9 @@
     "test": "tap test/*.js"
   },
   "dependencies": {
-    "tar": "~4.4.15",
+    "concat-stream": "~1.5.2",
     "hyperquest": "~2.1.2",
-    "concat-stream": "~1.5.2"
+    "tar": "~4.4.15"
   },
   "devDependencies": {
     "tap": "~10.2.0"
