@@ -14,7 +14,7 @@
   "dependencies": {
     "concat-stream": "~1.5.2",
     "hyperquest": "~2.1.2",
-    "tar": "~6.2.1"
+    "tar": "~7.5.3"
   },
   "devDependencies": {
     "tap": "^21.1.3"
